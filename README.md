@@ -2,16 +2,22 @@
 
 ## Dataset
 
-we need to generate a dataset consisting of all the queries and documents for the MS MARCO dataset. 
+we need to generate a graph dataset consisting of all the queries and documents for the MS MARCO V1 dataset. 
+• Documents: 8,841,823 web documents (in the full document collection).
+• Queries: 808,731 unique queries.
+• Relevance Judgments: 532,761 (labelled query-document pairs).
+
 1.	Graph Structure:
 
 Nodes: 
+
 - Queries
     - different attribution can be assigned to this  like relevance score
     - first assumption is to generate the embedding and assign the embedding as the initial value for the 
 - Documents
 
 Edges:
+
 - Query-Query Similarity: Captures semantic or lexical similarity between queries. 
   - similarity can be measured by different cross-encoder models that is used for semantic search.
   - models: sentence-transformers/msmarco-MiniLM-L6-cos-v5, 
