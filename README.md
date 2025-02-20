@@ -1,9 +1,14 @@
 # GNN-QPP
 
 ## Dataset
+<<<<<<< HEAD
 we need to generate a dataset consist of all the queries and documents of the MS MARCO dataset. 
 
 ### Graph Structure:
+=======
+we need to generate a dataset consisting of all the queries and documents for the MS MARCO dataset. 
+1.	Graph Structure:
+>>>>>>> cc643ee220be67a6f928f80a802566ee4e0b27cf
 
 Nodes: 
     -   Queries
@@ -12,7 +17,7 @@ Nodes:
     - Documents
 Edges:
     • Query-Query Similarity: Captures semantic or lexical similarity between queries. 
-        • similarity can be measured by different cross encoder models that is used for semantic search.
+        • similarity can be measured by different cross-encoder models that is used for semantic search.
         • models: sentence-transformers/msmarco-MiniLM-L6-cos-v5, 
         • we will save the embedding to save the computation cost
     • Document-Document Similarity: Helps model document relationships based on content, embeddings, or retrieval scores.
