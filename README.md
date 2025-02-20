@@ -1,14 +1,8 @@
 # GNN-QPP
 
 ## Dataset
-<<<<<<< HEAD
-we need to generate a dataset consist of all the queries and documents of the MS MARCO dataset. 
-
-### Graph Structure:
-=======
 we need to generate a dataset consisting of all the queries and documents for the MS MARCO dataset. 
 1.	Graph Structure:
->>>>>>> cc643ee220be67a6f928f80a802566ee4e0b27cf
 
 Nodes: 
     -   Queries
