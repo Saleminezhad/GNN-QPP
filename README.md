@@ -2,12 +2,14 @@
 
 ## Dataset
 we need to generate a dataset consist of all the queries and documents of the MS MARCO dataset. 
-1.	Graph Structure:
+
+### Graph Structure:
 
 Nodes: 
-    • Queries
-        • 
-    • Documents
+    -   Queries
+        -   different attribution can be assigned to this  like relevance score
+        -   first assumpsion is to generate the embedding and assign the embedding 
+    - Documents
 Edges:
     • Query-Query Similarity: Captures semantic or lexical similarity between queries. 
         • similarity can be measured by different cross encoder models that is used for semantic search.
