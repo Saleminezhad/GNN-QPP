@@ -1,13 +1,14 @@
 # GNN-QPP
 
 ## Dataset
+
 we need to generate a dataset consisting of all the queries and documents for the MS MARCO dataset. 
 1.	Graph Structure:
 
 Nodes: 
-    -   Queries
-        -   different attribution can be assigned to this  like relevance score
-        -   first assumpsion is to generate the embedding and assign the embedding 
+    - Queries
+      - different attribution can be assigned to this  like relevance score
+      - first assumpsion is to generate the embedding and assign the embedding 
     - Documents
 Edges:
     • Query-Query Similarity: Captures semantic or lexical similarity between queries. 
