@@ -6,10 +6,10 @@ we need to generate a dataset consisting of all the queries and documents for th
 1.	Graph Structure:
 
 Nodes: 
-    - Queries
-      - different attribution can be assigned to this  like relevance score
-      - first assumpsion is to generate the embedding and assign the embedding 
-    - Documents
+- Queries
+    - different attribution can be assigned to this  like relevance score
+    - first assumpsion is to generate the embedding and assign the embedding 
+- Documents
 Edges:
     • Query-Query Similarity: Captures semantic or lexical similarity between queries. 
         • similarity can be measured by different cross-encoder models that is used for semantic search.
