@@ -62,8 +62,8 @@ Edges:
 These function have been implemented for using faiss library for dense retriever. parallel computation is used to reduce the run time.
 
 you can use this header if you are using the slurm:
-
-'''#!/bin/bash
+```
+#!/bin/bash
 #SBATCH --job-name=multi_search             # Job name
 #SBATCH --partition=main              # Partition name
 #SBATCH --output=output_bash/faiss_index_%j.txt
@@ -72,12 +72,13 @@ you can use this header if you are using the slurm:
 #SBATCH --ntasks=1                   # Only 1 task (we handle parallelism in Python)
 #SBATCH --cpus-per-task=80             # Use 8 CPUs (adjust based on availability)
 #SBATCH --mem=120G                     # Increase memory to prevent OOM errors
-#SBATCH --error=output_bash/err_faiss_index_%j.txt         # Separate file for standard error'''
+#SBATCH --error=output_bash/err_faiss_index_%j.txt         # Separate file for standard error
+```
 
 ### Index
 
 
-'echo "Starting faiss_utils.py with multiprocessing..."
+```echo "Starting faiss_utils.py with multiprocessing..."
 source /mnt/data/abbas/miniconda3/etc/profile.d/conda.sh
 conda activate gnn
 
@@ -90,11 +91,11 @@ python faiss_utils.py --encode True \
                     --model_name $model_name  \
                     --input_encode_file dataset/$collection/collection.tsv \
                     --index_path faiss/faiss_index/$collection/doc_$model_name/faiss_index
-'
+```
 
 ### Retrieve
 
-'''
+```
 echo "Starting faiss_utils.py with multiprocessing..."
 source /mnt/data/abbas/miniconda3/etc/profile.d/conda.sh
 conda activate gnn
@@ -107,7 +108,7 @@ python faiss_utils.py --retrieve True \
                     --queries_file dataset/$collection/queries.train.tsv \
                     --output_run_file faiss/faiss_run/$collection/doc_$model_name/queries.train.tsv/run_file \
                     --index_path faiss/faiss_index/$collection/doc_$model_name/faiss_index
-'''
+```
 
 ### evaluate
 
@@ -115,7 +116,7 @@ by defult it calculate these metric @ 1000
 metrics: {'map', 'ndcg', 'recip_rank'}
 you can set the rank_cut to calculate these at different rank cuts like 10.
 
-'''
+```
 echo "Starting faiss_utils.py with multiprocessing..."
 source /mnt/data/abbas/miniconda3/etc/profile.d/conda.sh
 conda activate gnn
@@ -127,4 +128,4 @@ python faiss_utils.py --evaluate True \
                     --queries_file dataset/$collection/queries.train.tsv \
                     --output_eval_file faiss/faiss_eval/$collection/doc_$model_name/queries.train.tsv/eval_file \
                     --chunk_size_eval 20000 \
-'''
+```
