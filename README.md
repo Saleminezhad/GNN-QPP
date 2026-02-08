@@ -80,23 +80,3 @@ The repository is organized into the following conceptual stages:
 
 Documentation for Phase 1 and Phase 2 will be added incrementally.
 
----
-
-## Scope Note
-
-This repository intentionally excludes:
-- dense retriever pipelines
-- FAISS indexing
-- document embeddings
-- document-level graph construction
-
-These components are not required for the **query-centric QPP framework**
-developed in this project.
-
----
-
-## Upcoming Additions
-
-- Phase 1: Performance-aligned query encoder training
-- Phase 2: Graph construction and GNN training
-- Experimental settings and reproducibility notes
