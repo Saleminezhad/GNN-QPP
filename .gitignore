@@ -169,3 +169,35 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+# VSCode
+.vscode/
+.history/
+
+# Data / outputs / checkpoints
+data/
+dataset/
+datasets/
+outputs/
+logs/
+runs/
+results/
+checkpoints/
+models/
+embeddings/
+wandb/
+lightning_logs/
+
+# Large formats (optional — keep if you never want them in git)
+*.tsv
+*.jsonl
+*.parquet
+*.pt
+*.bin
+*.ckpt
+*.safetensors
+*.faiss
+*.index
+*.out
+*.err
