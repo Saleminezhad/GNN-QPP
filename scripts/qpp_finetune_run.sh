@@ -77,7 +77,7 @@ python src/finetune_biencoder_qpp.py \
 # ============================================================
 echo "Step 2: Mining NNQ (train) with fine-tuned encoder..."
 
-python src/mine_query_neighbors.py \
+python src/mine_query_neighbors_v2.py \
   --query_file_main "${DATA_DIR}/v1/queries.train.small.tsv" \
   --query_file_search "${DATA_DIR}/v1/queries.train.small.tsv" \
   --output_json "${NNQ_DIR}/NNQ_${MODEL_NAME}_train_V1_ft.json" \
@@ -86,7 +86,7 @@ python src/mine_query_neighbors.py \
 
 echo "Step 2: Mining NNQ (TREC 2019) with fine-tuned encoder..."
 
-python src/mine_query_neighbors.py \
+python src/mine_query_neighbors_v2.py \
   --query_file_main "${DATA_DIR}/v1/queries.train.small.tsv" \
   --query_file_search "${DATA_DIR}/trec/2019/queries.tsv" \
   --output_json "${NNQ_DIR}/NNQ_${MODEL_NAME}_2019_ft.json" \
