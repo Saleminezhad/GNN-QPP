@@ -159,3 +159,87 @@ Before running, it is recommended to verify the dataset layout:
 
 Performance-aligned fine-tuning of the encoder is introduced
 as an optional extension in Phase 2.
+
+
+## Phase 2 (Optional): Performance-Aligned Query Representations
+
+Phase 2 extends the baseline pipeline by **fine-tuning the query encoder**
+to explicitly align query representations with **retrieval performance signals**.
+
+This phase is optional and is designed to improve query–query similarity estimates
+used in graph construction. All downstream components (graph construction, GNN
+training, evaluation) remain unchanged.
+
+---
+
+### Motivation
+
+In Phase 1, query embeddings are obtained from an off-the-shelf bi-encoder and are
+agnostic to query difficulty or retrieval effectiveness.
+
+Phase 2 introduces **performance alignment**, where the bi-encoder is fine-tuned
+using query-level supervision (e.g., nDCG), so that:
+- semantically similar queries with similar retrieval behavior are closer
+- performance-aware neighborhoods can be constructed more reliably
+
+---
+
+### Prerequisites
+
+Phase 2 requires the output of Phase 1:
+
+- `MotherDataset_BM25_V1.json`
+- (optionally) `MotherDataset_BM25_V1_2019.json`
+
+These files must already exist and are produced by the baseline pipeline.
+
+See:
+
+    dataset/README.md
+
+for details on dataset preparation.
+
+---
+
+### Phase 2 Pipeline
+
+Phase 2 consists of the following steps:
+
+1. **Bi-Encoder Fine-Tuning**  
+   A pre-trained bi-encoder is fine-tuned using triplets derived from
+   query-level performance signals (e.g., nDCG).
+
+2. **Re-Mining Query Nearest Neighbors (NNQ)**  
+   Nearest-neighbor queries are recomputed using the fine-tuned encoder,
+   replacing the baseline similarity structure.
+
+3. **Fine-Tuned MotherDataset Construction**  
+   The baseline MotherDataset is updated by swapping the NNQ information
+   with performance-aligned neighbors.
+
+4. **Downstream Graph Learning**  
+   The fine-tuned MotherDataset can be used directly by the same
+   graph construction and GNN training pipeline as in Phase 1.
+
+---
+
+### Running Phase 2
+
+To run the full performance-aligned pipeline:
+
+    scripts/qpp_finetune_run.sh
+
+This script:
+- fine-tunes the bi-encoder
+- re-computes NNQ using the fine-tuned encoder
+- produces a fine-tuned version of the MotherDataset
+
+---
+
+### Notes
+
+- Phase 2 is **not required** to run the baseline model.
+- All experiments in Phase 2 are directly comparable to Phase 1.
+- Improvements can be attributed solely to performance-aligned representations.
+
+If Phase 2 is skipped, the project defaults to the Phase 1 baseline.
