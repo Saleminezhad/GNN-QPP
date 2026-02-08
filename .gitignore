@@ -201,3 +201,10 @@ lightning_logs/
 *.index
 *.out
 *.err
+
+
+# Ignore all dataset files
+dataset/*
+
+# But keep dataset documentation
+!dataset/README.md
