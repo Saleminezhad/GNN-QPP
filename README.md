@@ -45,22 +45,21 @@ In other words:
 - This repository consumes **query-level performance signals** as input
 
 ---
+## Data Setup
 
-## Dataset Format
+This repository does not include datasets.
 
-Each query is represented together with its associated performance signal.
+Before running the pipeline, you must prepare:
+- query files (MS MARCO V1, TREC)
+- per-query BM25 evaluation files
 
-Conceptually, the dataset follows this structure:
+The expected directory structure and file formats are documented in:
 
-    Query ID | Query Text | Performance Score (e.g., nDCG@10)
+    dataset/README.md
 
-This query-centric representation enables:
-- performance-aware query representation learning
-- construction of query–query relationships
-- graph-based query performance prediction
+You can verify your local data setup by running:
 
-**Note:**
-Document-level retrieval results are not stored or processed in this repository.
+    scripts/check_data_layout.sh
 
 ---
 
