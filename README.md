@@ -67,7 +67,7 @@ You can verify your local data setup by running:
 
 The repository is organized into the following conceptual stages:
 
-- **Dataset & Query Evaluation (current scope)**
+- **Dataset & Query Evaluation**
   - Definition of query-level supervision
   - Dataset format used throughout the project
 
@@ -79,3 +79,83 @@ The repository is organized into the following conceptual stages:
 
 Documentation for Phase 1 and Phase 2 will be added incrementally.
 
+
+
+## Phase 1: Baseline Query Performance Prediction (No Fine-Tuning)
+
+Phase 1 implements the **baseline query performance prediction pipeline** without
+any performance-aligned fine-tuning of the encoder.
+
+The goal of this phase is to:
+- construct a query-centric dataset using BM25 supervision
+- model query–query relationships based on semantic similarity
+- train a graph neural network (GNN) to predict query performance
+
+All representations are obtained from a **pre-trained bi-encoder**, used as-is.
+
+---
+
+### Inputs
+
+Phase 1 assumes the availability of the following inputs:
+
+- Query text files (MS MARCO V1, TREC splits)
+- Per-query BM25 evaluation scores (e.g., nDCG, MAP)
+- A pre-trained sentence encoder (e.g., `msmarco-distilbert-base-v4`)
+
+Details about file locations and formats are provided in:
+
+    dataset/README.md
+
+---
+
+### Pipeline Overview
+
+Phase 1 consists of the following steps:
+
+1. **Query–Query Similarity Mining**  
+   Each query is encoded using a pre-trained bi-encoder.
+   For every query, its top-K nearest neighbor queries are retrieved
+   based on embedding similarity.
+
+2. **MotherDataset Construction**  
+   A unified JSON dataset is built by combining:
+   - query text
+   - query-level BM25 evaluation scores
+   - nearest-neighbor query information
+
+3. **Graph Construction**  
+   Each query is treated as a node.
+   Edges connect semantically similar queries and may be weighted by
+   performance-related signals.
+
+4. **GNN Training**  
+   A graph neural network (e.g., GAT, GCN, GraphSAGE) is trained to
+   regress query performance metrics such as nDCG.
+
+5. **Evaluation**  
+   Predictions are evaluated using rank correlation metrics
+   (e.g., Pearson, Spearman, Kendall).
+
+---
+
+### Running Phase 1
+
+To execute the full baseline pipeline, run:
+
+    scripts/qpp_run.sh
+
+Before running, it is recommended to verify the dataset layout:
+
+    scripts/check_data_layout.sh
+
+---
+
+### Notes
+
+- This phase uses **no encoder fine-tuning**.
+- All query embeddings come from an off-the-shelf bi-encoder.
+- Phase 1 serves as the baseline for later extensions.
+
+Performance-aligned fine-tuning of the encoder is introduced
+as an optional extension in Phase 2.
