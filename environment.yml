@@ -1,0 +1,20 @@
+name: qpp
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pytorch
+  - pytorch-cuda=12.1
+  - numpy
+  - scipy
+  - pandas
+  - scikit-learn
+  - tqdm
+  - pyyaml
+  - faiss-cpu
+  - pip
+  - pip:
+      - sentence-transformers
+      - torch-geometric
